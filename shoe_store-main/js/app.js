@@ -1,4 +1,4 @@
-
+/* ...existing code... */
 // Menu toggle
 const menuToggleBtn = document.getElementById('menuToggle');
 const menuList = document.getElementById('MenuItems');
@@ -47,3 +47,13 @@ if ('IntersectionObserver' in window && productCards.length) {
   // Fallback: make them visible
   productCards.forEach(c => c.classList.add('visible'));
 }
+
+// Sombra en navbar al hacer scroll
+const siteHeader = document.querySelector('.site-header');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 10) {
+    siteHeader.classList.add('scrolled');
+  } else {
+    siteHeader.classList.remove('scrolled');
+  }
+});
