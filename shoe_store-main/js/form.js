@@ -1,4 +1,3 @@
-
 function $(sel, root=document){ return root.querySelector(sel); }
 function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
 
@@ -7,14 +6,14 @@ const RegForm = document.getElementById("RegForm");
 const Indicator = document.getElementById("Indicator");
 
 function register(){
-  RegForm.style.transform="translateX(0)";
-  LoginForm.style.transform="translateX(0)";
-  Indicator.style.transform="translateX(100px)";
+  RegForm.style.transform = "translateX(0)";
+  LoginForm.style.transform = "translateX(300px)";
+  Indicator.style.transform = "translateX(100px)";
 }
 function login(){
-  RegForm.style.transform="translateX(300px)";
-  LoginForm.style.transform="translateX(300px)";
-  Indicator.style.transform="translateX(0)";
+  RegForm.style.transform = "translateX(-300px)";
+  LoginForm.style.transform = "translateX(0)";
+  Indicator.style.transform = "translateX(0)";
 }
 window.register = register;
 window.login = login;
@@ -121,5 +120,21 @@ function attachValidation(form){
 
 // Attach on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-  if (RegForm) attachValidation(RegForm);
+  const formContainer = document.querySelector('.form-container');
+  const loginBtn = document.querySelector('.form-btn span:nth-child(1)');
+  const registerBtn = document.querySelector('.form-btn span:nth-child(2)');
+
+  // Mostrar login por defecto
+  formContainer.classList.remove('register-active');
+
+  window.login = function() {
+    formContainer.classList.remove('register-active');
+  };
+  window.register = function() {
+    formContainer.classList.add('register-active');
+  };
+
+  // Opcional: listeners para accesibilidad
+  loginBtn.addEventListener('click', window.login);
+  registerBtn.addEventListener('click', window.register);
 });
