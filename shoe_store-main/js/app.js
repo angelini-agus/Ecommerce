@@ -57,3 +57,18 @@ window.addEventListener('scroll', () => {
     siteHeader.classList.remove('scrolled');
   }
 });
+
+// Resalta el enlace activo en el navbar según la URL
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.querySelectorAll('.primary-nav ul li a');
+  const current = window.location.pathname.split('/').pop() || 'index.html';
+
+  navLinks.forEach(link => {
+    // Quita la clase active de todos
+    link.classList.remove('active');
+    // Si el href coincide con la página actual, agrega active
+    if (link.getAttribute('href') === current) {
+      link.classList.add('active');
+    }
+  });
+});

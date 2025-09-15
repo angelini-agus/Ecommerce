@@ -12,27 +12,27 @@
 </head>
 <body>
   <header class="site-header">
-      <div class="container navbar" role="navigation" aria-label="Main">
-        <div class="logo">
-          <a href="index.html" aria-label="Go to homepage"><img src="images/logo.png" width="125" alt="Redstore logo"></a>
-        </div>
-        <nav class="primary-nav" aria-label="Primary">
-          <button class="menu-icon" id="menuToggle" aria-expanded="false" aria-controls="MenuItems">
-            <img src="images/menu.png" alt="Toggle menu" width="28" height="28">
-          </button>
-          <ul id="MenuItems">
-            <li><a href="index.html" >Home</a></li>
-            <li><a href="products.html" >Products</a></li>
-            <li><a href="account.html" class='active'>Account</a></li>
-            <li><a href="cart.html" >Cart</a></li>
-          </ul>
-        </nav>
-        <div class="header-actions">
-          <a class="cart-link" href="cart.html" aria-label="View cart"><img src="images/cart.png" width="30" height="30" alt="Cart"></a>
-          <button id="themeToggle" class="btn btn-ghost" aria-pressed="false" aria-label="Toggle dark mode">🌓</button>
-        </div>
-      </div>
-    </header>
+  <div class="container navbar" role="navigation" aria-label="Main">
+    <div class="logo">
+      <a href="index.html" aria-label="Go to homepage"><img src="images/logo.png" width="125" alt="Redstore logo"></a>
+    </div>
+    <nav class="primary-nav" aria-label="Primary">
+      <button class="menu-icon" id="menuToggle" aria-expanded="false" aria-controls="MenuItems">
+        <img src="images/menu.png" alt="Toggle menu" width="28" height="28">
+      </button>
+      <ul id="MenuItems">
+        <li><a href="index.html" class='active'>Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="account.html">Account</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="cart-link" href="cart.html" aria-label="View cart"><img src="images/cart.png" width="30" height="30" alt="Cart"></a>
+      <button id="themeToggle" class="btnnav btn-ghost" aria-pressed="false" aria-label="Toggle dark mode"><img src="images/blanco-negro.png" alt="Tema claro/oscuro"></button>
+    </div>
+  </div>
+</header>
   <main>
     <section class="account-page">
       <div class="container">
@@ -45,8 +45,8 @@
               <div class="form-btn">
                 <span onclick="login()">Login</span>
                 <span onclick="register()">Register</span>
+                <hr id="Indicator" aria-hidden="true">
               </div>
-              <hr id="Indicator" aria-hidden="true">
 
               <!-- Login form (simple) -->
               <form id="LoginForm" aria-label="Login form">
@@ -105,7 +105,7 @@
                   </select>
                   <div class="feedback" aria-live="polite"></div>
                 </div>
-                <div class="form-group">
+                <div class="form-group newsletter-group">
                   <span>Newsletter</span>
                   <div>
                     <label><input type="radio" name="newsletter" value="si"> Sí</label>
@@ -113,9 +113,12 @@
                   </div>
                   <div class="feedback" aria-live="polite"></div>
                 </div>
-                <div class="form-group">
-                  <label><input type="checkbox" name="terms"> Acepto los términos y condiciones</label>
-                  <div class="feedback" aria-live="polite"></div>
+                <div class="form-group terms-group">
+                  <div>
+                    <input type="checkbox" name="terms">
+                    <label> Acepto los términos y condiciones</label>
+                  <div class="feedback" aria-live="polite"></div></div>
+                  
                 </div>
 
                 <button type="submit" class="btn">Registrarme</button>

@@ -478,40 +478,90 @@ th:last-child {
 .form-container {
   position: relative;
   width: 300px;
-  min-height: 420px;
+  min-height: 500px;
+  max-height: 520px; /* Ajusta según tu diseño */
+  text-align: center;
   overflow: hidden;
-  margin: 0 auto;
+  margin: auto;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.06);
-  padding: 32px 24px 24px 24px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.1);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+#RegForm {
+  overflow-y: auto;
+  max-height: 390px; /* Ajusta según el espacio disponible */
+  padding-right: 0px; /* Espacio para la barra de scroll */
+}
+
+.form-group.newsletter-group div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group.newsletter-group input {
+  height: 24px; /* Ajusta el tamaño del checkbox si es necesario */
+  margin-right: 10px; /* Espacio entre el checkbox y el texto */
+}
+
+.terms-group div{
+  display: flex;
+  flex-direction: row;
+}
+
+.terms-group input {
+  height: 16px; /* Ajusta el tamaño del checkbox si es necesario */
+  width: 16px; /* Ajusta el tamaño del checkbox si es necesario */
+  margin-right: 10px; /* Espacio entre el checkbox y el texto */
+}
+
+.terms-group label {
+  font-size: 12px;
+  color: var(--text);
+  text-align: left;
+}
+
 .form-container .form-btn {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 0.5rem;
+  position: relative;
+  width: 220px;
+  margin: 0 auto 30px auto;
+  justify-content: space-between;
+  gap: 24px; /* <-- Agrega espacio entre Login y Register */
 }
-.form-container span {
-  font-weight: 600;
-  color: var(--text);
+.form-container .form-btn span {
+  font-size: 18px;
+  font-weight: 650;
   cursor: pointer;
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border-radius: 8px;
+  width: 100px;
+  text-align: center;
+  z-index: 2;
 }
 #Indicator {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
   width: 100px;
-  border: none;
-  background: var(--brand);
   height: 3px;
-  margin-top: 8px;
-  transform: translateX(100px);
-  transition: transform 1s;
+  background: var(--brand, #ff523b);
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.3s;
+  z-index: 1;
+  transform: translateX(0);
+}
+.form-container.register-active #Indicator {
+  transform: translateX(120px);
 }
 .form-container form {
   position: absolute;
-  top: 60px;
+  max-width: 300px;
+  top: 70px;
   left: 0;
   width: 100%;
   transition: transform 0.5s;
@@ -535,7 +585,7 @@ th:last-child {
   transform: translateX(0);
 }
 form .form-group {
-  margin: 10px 0;
+  margin: 10px 20px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -569,7 +619,7 @@ select.success {
 }
 .feedback {
   font-size: 12px;
-  min-height: 16px;
+  min-height: 0px;
 }
 .feedback.error {
   color: #e74c3c;
@@ -578,13 +628,35 @@ select.success {
   color: #2ecc71;
 }
 form .btn {
-  width: 100%;
+  width: 90%;
   cursor: pointer;
   margin: 12px 0;
 }
 form a {
   font-size: 12px;
   color: var(--text);
+}
+
+/* Evita que el modo oscuro afecte el fondo y el texto del formulario de cuenta */
+[data-theme="dark"] .account-page .form-container {
+  background: #fff !important;
+  color: #333 !important;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+}
+
+[data-theme="dark"] .account-page .form-container input,
+[data-theme="dark"] .account-page .form-container select,
+[data-theme="dark"] .account-page .form-container textarea {
+  background: #fff !important;
+  color: #333 !important;
+  border-color: #ccc !important;
+}
+
+[data-theme="dark"] .account-page .form-container label {
+  color: #333 !important;
+}
+[data-theme="dark"] .account-page .form-container a {
+  color: black !important;
 }
 
 /* Burger menu responsive */
