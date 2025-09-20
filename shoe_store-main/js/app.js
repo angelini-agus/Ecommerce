@@ -14,11 +14,21 @@ if (menuToggleBtn && menuList) {
   });
 }
 
+// Function to update logo src based on theme
+const updateLogos = (theme) => {
+  const logos = document.querySelectorAll('.logo img, .footer-col-2 img');
+  const logoSrc = theme === 'dark' ? 'images/ritmo-sport-claro.png' : 'images/ritmo-sport.png';
+  logos.forEach(logo => logo.src = logoSrc);
+};
+
 // Theme toggle with persistence
 const body = document.body;
 const themeToggle = document.getElementById('themeToggle');
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme) body.setAttribute('data-theme', savedTheme);
+if (savedTheme) {
+  body.setAttribute('data-theme', savedTheme);
+  updateLogos(savedTheme);
+}
 if (themeToggle) {
   const current = body.getAttribute('data-theme') || 'light';
   themeToggle.setAttribute('aria-pressed', String(current === 'dark'));
@@ -28,6 +38,7 @@ if (themeToggle) {
     body.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
     themeToggle.setAttribute('aria-pressed', String(next === 'dark'));
+    updateLogos(next);
   });
 }
 
