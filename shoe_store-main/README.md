@@ -77,7 +77,7 @@ Luego abre `http://localhost:8000` en tu navegador.
 *Vista del sitio en modo oscuro para mayor comodidad visual*
 
 ### Vista Mobile
-![Mobile](./screenshots/mobile-view.png)
+![Mobile](./screenshots/mobile-view.png)  
 *Vista responsive en dispositivos móviles*
 
 ## ✨ Funcionalidades Implementadas
