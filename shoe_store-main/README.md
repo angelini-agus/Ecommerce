@@ -169,9 +169,10 @@ shoe_store-main/
 │   ├── app.js               # Funcionalidades generales
 │   └── form.js              # Validación de formularios
 └── images/                   # Imágenes del sitio
-    ├── logo.png
-    ├── product-*.jpg
-    └── favicon.ico
+│   ├── logo.png
+│   ├── product-*.jpg
+│   └── favicon.ico
+└── screenshots/               # Capturas de pantalla del sitio
 ```
 
 ## 🎯 Características Técnicas
