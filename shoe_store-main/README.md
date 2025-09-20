@@ -77,7 +77,7 @@ Luego abre `http://localhost:8000` en tu navegador.
 *Vista del sitio en modo oscuro para mayor comodidad visual*
 
 ### Vista Mobile
-![Mobile](./screenshots/mobile-view.png)
+![Mobile](./screenshots/mobile-view.png)  
 *Vista responsive en dispositivos móviles*
 
 ## ✨ Funcionalidades Implementadas
@@ -169,9 +169,10 @@ shoe_store-main/
 │   ├── app.js               # Funcionalidades generales
 │   └── form.js              # Validación de formularios
 └── images/                   # Imágenes del sitio
-    ├── logo.png
-    ├── product-*.jpg
-    └── favicon.ico
+│   ├── logo.png
+│   ├── product-*.jpg
+│   └── favicon.ico
+└── screenshots/               # Capturas de pantalla del sitio
 ```
 
 ## 🎯 Características Técnicas
