@@ -466,6 +466,7 @@ th:last-child {
 .account-page {
   padding: 50px 0;
   background: radial-gradient(#fff, #ffd6d6);
+  min-height: 91vh;
 }
 [data-theme="dark"] .account-page {
   background: #151922;

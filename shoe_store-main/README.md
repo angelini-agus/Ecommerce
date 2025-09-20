@@ -1,10 +1,10 @@
-# 🏃‍♂️ Redstore - Tienda Deportiva Online
+# 🏃‍♂️ Ritmo Sport - Tienda Deportiva Online
 
-¡Bienvenido a **Redstore**! Esta es una tienda en línea completa dedicada a la venta de productos deportivos, desde zapatillas de running hasta accesorios para entrenamiento. El proyecto combina un diseño moderno y responsive con funcionalidades avanzadas de JavaScript para crear una experiencia de compra excepcional.
+¡Bienvenido a **Ritmo Sport**! Esta es una tienda en línea completa dedicada a la venta de productos deportivos, desde zapatillas de running hasta accesorios para entrenamiento. El proyecto combina un diseño moderno y responsive con funcionalidades avanzadas de JavaScript para crear una experiencia de compra excepcional.
 
 ## 📋 Descripción del Proyecto
 
-Redstore es una plataforma de e-commerce especializada en artículos deportivos que ofrece:
+Ritmo Sport es una plataforma de e-commerce especializada en artículos deportivos que ofrece:
 - **Catálogo completo** de productos con imágenes de alta calidad
 - **Sistema de carrito de compras** intuitivo
 - **Formulario de registro** con validación avanzada
@@ -54,98 +54,102 @@ php -S localhost:8000
 
 Luego abre `http://localhost:8000` en tu navegador.
 
-## 📱 Capturas de Pantalla
+## Capturas de Pantalla
 
 ### Página Principal
-![Página Principal](https://via.placeholder.com/800x400/4a90e2/ffffff?text=Página+Principal)
+![Página Principal](./screenshots/homepage.png)
 *Vista de la página de inicio con hero section, categorías destacadas y productos*
 
 ### Catálogo de Productos
-![Catálogo](https://via.placeholder.com/800x400/50c878/ffffff?text=Catálogo+de+Productos)
+![Catálogo](./screenshots/products.png)
 *Vista del catálogo completo con filtros y productos organizados*
 
 ### Detalles del Producto
-![Detalles del Producto](https://via.placeholder.com/800x400/f39c12/ffffff?text=Detalles+del+Producto)
+![Detalles del Producto](./screenshots/product-details.png)
 *Vista detallada de producto con galería de imágenes y opciones de compra*
 
 ### Formulario de Registro
-![Formulario](https://via.placeholder.com/800x400/e74c3c/ffffff?text=Formulario+de+Registro)
+![Formulario](./screenshots/registration.png)
 *Formulario avanzado con validación en tiempo real y feedback visual*
 
 ### Modo Oscuro
-![Modo Oscuro](https://via.placeholder.com/800x400/2c3e50/ffffff?text=Modo+Oscuro)
+![Modo Oscuro](./screenshots/dark-mode.png)
 *Vista del sitio en modo oscuro para mayor comodidad visual*
+
+### Vista Mobile
+![Mobile](./screenshots/mobile-view.png)
+*Vista responsive en dispositivos móviles*
 
 ## ✨ Funcionalidades Implementadas
 
-### 🏠 Página Principal
+### Página Principal
 - **Hero section** con llamada a la acción
 - **Categorías destacadas** con imágenes atractivas
 - **Productos más vendidos** y recientes
 - **Testimonios de clientes** con reseñas
 - **Sección de ofertas especiales**
 
-### 🛍️ Catálogo de Productos
+### Catálogo de Productos
 - **Vista de cuadrícula** para productos
 - **Paginación** para navegación fácil
 - **Filtros de ordenamiento** (precio, popularidad, calificación)
 - **Enlaces a detalles** de cada producto
 
-### 📄 Detalles del Producto
+### Detalles del Producto
 - **Galería de imágenes** con zoom
 - **Información completa** del producto
 - **Selector de tallas** y cantidades
 - **Botón de agregar al carrito**
 - **Productos relacionados**
 
-### 🛒 Carrito de Compras
+### Carrito de Compras
 - **Vista de tabla** con productos seleccionados
 - **Cálculo automático** de subtotales e impuestos
 - **Botones de eliminación** individual
 - **Resumen de compra** final
 
-### 👤 Sistema de Cuentas
+### Sistema de Cuentas
 - **Formulario de login** simple
 - **Registro avanzado** con múltiples campos
 - **Validación en tiempo real** de todos los campos
 - **Feedback visual** con iconos de estado
 - **Simulación de envío** a API
 
-### 🎨 Interfaz de Usuario
+### Interfaz de Usuario
 - **Navegación responsive** con menú hamburguesa
 - **Modo oscuro/claro** con persistencia
 - **Animaciones suaves** al hacer scroll
 - **Transiciones elegantes** entre estados
 - **Iconos intuitivos** en toda la interfaz
 
-## 🚀 Funcionalidades Extra Implementadas
+## Funcionalidades Extra Implementadas
 
-### 🔧 Validación Avanzada del Formulario
+### Validación Avanzada del Formulario
 - **Validación en tiempo real** mientras escribes
 - **Mensajes contextuales** específicos para cada error
 - **Iconos de estado** (✓ éxito, ✕ error, ⚠ advertencia)
 - **Validación cruzada** (confirmación de contraseña)
 - **Formato inteligente** para emails y teléfonos
 
-### 📱 Experiencia Mobile-First
+### Experiencia Mobile-First
 - **Diseño completamente responsive**
 - **4 breakpoints** optimizados (móvil, tablet, laptop, desktop)
 - **Menú adaptativo** que se convierte en hamburguesa
 - **Imágenes optimizadas** con lazy loading
 
-### 🌙 Sistema de Temas
+### Sistema de Temas
 - **Modo oscuro** completo con gradientes
 - **Persistencia automática** de la preferencia del usuario
 - **Transiciones suaves** entre modos
 - **Adaptación de colores** en todos los componentes
 
-### 🎭 Animaciones y Micro-interacciones
+### Animaciones y Micro-interacciones
 - **Animaciones CSS** en el hero section
 - **Intersection Observer** para aparición de tarjetas
 - **Transiciones suaves** en botones y estados
 - **Scroll automático** a mensajes de feedback
 
-### 🔄 Simulación de API
+### Simulación de API
 - **Fetch API** para envío de formularios
 - **Manejo de errores** realista
 - **Estados de carga** con feedback visual
@@ -179,28 +183,7 @@ shoe_store-main/
 - **Optimización**: Imágenes lazy, compresión, performance
 - **Compatibilidad**: Funciona en todos los navegadores modernos
 
-## 🤝 Contribuir
-
-Si quieres contribuir al proyecto:
-
-1. Haz un fork del repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -am 'Agrega nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
-## 🙋‍♂️ Soporte
-
-Si tienes preguntas o encuentras algún problema:
-- Revisa la documentación en este README
-- Abre un issue en el repositorio
-- Contacta al equipo de desarrollo
-
 ---
 
-**¡Gracias por visitar Redstore!** Esperamos que disfrutes explorando nuestra tienda de productos deportivos. Si tienes sugerencias para mejorar la experiencia, ¡no dudes en compartirlas! 🏃‍♀️💨
+**¡Gracias por visitar Ritmo Sport!** Esperamos que disfrutes explorando nuestra tienda de productos deportivos. Si tienes sugerencias para mejorar la experiencia, ¡no dudes en compartirlas! 🏃‍♀️💨
 
