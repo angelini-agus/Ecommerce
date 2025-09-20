@@ -160,10 +160,11 @@ Luego abre `http://localhost:8000` en tu navegador.
 ```
 shoe_store-main/
 ├── index.html                 # Página principal
-├── products.html             # Catálogo de productos
-├── products-details.html     # Detalles de producto
-├── cart.html                 # Carrito de compras
-├── account.html              # Sistema de cuentas
+└── pages/                   # Paginas del sitio
+│   ├── products.html             # Catálogo de productos
+│   ├── products-details.html     # Detalles de producto
+│   ├── cart.html                 # Carrito de compras
+│   ├── account.html              # Sistema de cuentas
 ├── style.css                 # Estilos principales
 ├── js/
 │   ├── app.js               # Funcionalidades generales
