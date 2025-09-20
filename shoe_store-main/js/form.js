@@ -18,17 +18,47 @@ function login(){
 window.register = register;
 window.login = login;
 
-// Realtime validation
+// Realtime validation with enhanced messages
 const validators = {
-  username: v => v.trim().length >= 3 || "Mínimo 3 caracteres",
-  email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Email inválido",
-  password: v => v.length >= 6 || "Mínimo 6 caracteres",
-  confirm: (v, form) => v === form.password.value || "Las contraseñas no coinciden",
-  tel: v => /^\+?\d{7,15}$/.test(v) || "Teléfono inválido",
-  birth: v => !!v || "Fecha requerida",
-  country: v => !!v || "Seleccione un país",
-  terms: v => v === true || "Aceptá los términos",
-  newsletter: v => (v === "si" || v === "no") || "Elegí una opción"
+  username: v => {
+    if (!v.trim()) return "El usuario es obligatorio";
+    if (v.trim().length < 3) return "Mínimo 3 caracteres";
+    if (!/^[a-zA-Z0-9_]+$/.test(v.trim())) return "Solo letras, números y guiones bajos";
+    return true;
+  },
+  email: v => {
+    if (!v) return "El email es obligatorio";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return "Formato de email inválido";
+    return true;
+  },
+  password: v => {
+    if (!v) return "La contraseña es obligatoria";
+    if (v.length < 6) return "Mínimo 6 caracteres";
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(v)) return "Debe incluir mayúscula, minúscula y número";
+    return true;
+  },
+  confirm: (v, form) => {
+    if (!v) return "Confirma tu contraseña";
+    if (v !== form.password.value) return "Las contraseñas no coinciden";
+    return true;
+  },
+  tel: v => {
+    if (!v) return "El teléfono es obligatorio";
+    if (!/^\+?\d{7,15}$/.test(v)) return "Formato de teléfono inválido (ej: +54912345678)";
+    return true;
+  },
+  birth: v => {
+    if (!v) return "La fecha de nacimiento es obligatoria";
+    const birthDate = new Date(v);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    if (age < 13) return "Debes tener al menos 13 años";
+    if (age > 120) return "Fecha de nacimiento inválida";
+    return true;
+  },
+  country: v => true, // Any selection is valid
+  terms: v => v === true || "Debes aceptar los términos y condiciones",
+  newsletter: v => (v === "si" || v === "no") || "Elige si deseas recibir el newsletter"
 };
 
 function attachValidation(form){
@@ -44,11 +74,44 @@ function attachValidation(form){
     newsletter: form.querySelectorAll('[name="newsletter"]')
   };
   function setState(input, ok, msg){
-    const feedback = input.closest('.form-group').querySelector('.feedback');
-    input.classList.toggle('error', !ok);
-    input.classList.toggle('success', ok);
-    feedback.textContent = ok ? "" : msg;
-    feedback.className = "feedback " + (ok ? "success" : "error");
+    const formGroup = input.closest('.form-group');
+    const feedback = formGroup.querySelector('.feedback');
+    const icon = formGroup.querySelector('.status-icon');
+
+    // Handle different input types
+    const targetInput = input.type === 'radio' ? formGroup.querySelector('input[type="radio"]:last-of-type') : input;
+
+    targetInput.classList.remove('error', 'success', 'warning');
+    feedback.className = "feedback";
+    feedback.innerHTML = "";
+
+    if (ok) {
+      targetInput.classList.add('success');
+      feedback.classList.add('success');
+      if (icon) {
+        icon.innerHTML = '✓';
+        icon.className = 'status-icon success';
+      }
+    } else if (msg) {
+      // Determine severity based on message content
+      let severity = 'warning';
+      if (msg.includes('obligatorio') || msg.includes('inválido') || msg.includes('coinciden') || msg.includes('aceptar')) {
+        severity = 'error';
+      }
+
+      targetInput.classList.add(severity);
+      feedback.classList.add(severity);
+      if (icon) {
+        icon.innerHTML = severity === 'error' ? '✕' : '⚠';
+        icon.className = `status-icon ${severity}`;
+      }
+      feedback.innerHTML = `<span class="feedback-text">${msg}</span>`;
+    } else {
+      if (icon) {
+        icon.innerHTML = '';
+        icon.className = 'status-icon';
+      }
+    }
   }
   function getNewsletterValue(){
     const checked = Array.from(fields.newsletter).find(r => r.checked);
@@ -73,9 +136,13 @@ function attachValidation(form){
     return ok;
   }
   // attach listeners
-  ['username','email','password','confirm','tel','birth','country'].forEach(n=>{
+  ['username','email','password','confirm','tel','birth'].forEach(n=>{
     fields[n]?.addEventListener('input', () => validateField(n));
   });
+
+  // Handle select elements with 'change' event
+  fields.country?.addEventListener('change', () => validateField('country'));
+
   fields.terms?.addEventListener('change', () => validateField('terms'));
   fields.newsletter.forEach(r => r.addEventListener('change', () => validateField('newsletter')));
 
@@ -97,20 +164,101 @@ function attachValidation(form){
     submitBtn.textContent = "Enviando...";
 
     try{
-      const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      // Simulate API call with delay
+      submitBtn.textContent = "Procesando...";
+
+      const res = await fetch('https://jsonplaceholder.typicode.com/users', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer mock-token-12345'
+        },
+        body: JSON.stringify({
+          ...payload,
+          registrationDate: new Date().toISOString(),
+          status: 'pending_verification'
+        })
       });
-      if (!res.ok) throw new Error('Error en la simulación de envío');
+
+      if (!res.ok) {
+        throw new Error(`Error del servidor: ${res.status}`);
+      }
+
       const data = await res.json();
-      // Show success
-      alert('Formulario enviado ✅ (simulado). ID: ' + data.id);
+
+      // Enhanced success feedback
+      const successMsg = document.createElement('div');
+      successMsg.className = 'form-message success-message';
+      successMsg.innerHTML = `
+        <div class="message-content">
+          <span class="message-icon">✅</span>
+          <div class="message-text">
+            <strong>¡Registro exitoso!</strong><br>
+            <small>Tu cuenta ha sido creada con ID: ${data.id}</small>
+          </div>
+        </div>
+      `;
+
+      form.appendChild(successMsg);
+
+      // Scroll to the message
+      setTimeout(() => {
+        successMsg.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 100);
+
+      // Reset form and clear states
       form.reset();
-      // clear states
-      $all('input,select', form).forEach(i=> { i.classList.remove('error','success'); });
+      $all('input,select', form).forEach(i => {
+        i.classList.remove('error','success','warning');
+        const icon = i.closest('.form-group').querySelector('.status-icon');
+        if (icon) {
+          icon.innerHTML = '';
+          icon.className = 'status-icon';
+        }
+        const feedback = i.closest('.form-group').querySelector('.feedback');
+        if (feedback) feedback.innerHTML = '';
+      });
+
+      // Remove success message after 5 seconds
+      setTimeout(() => {
+        if (successMsg.parentNode) {
+          successMsg.remove();
+        }
+      }, 5000);
+
     }catch(err){
-      alert('No se pudo enviar: ' + err.message);
+      // Enhanced error feedback
+      const errorMsg = document.createElement('div');
+      errorMsg.className = 'form-message error-message';
+      errorMsg.innerHTML = `
+        <div class="message-content">
+          <span class="message-icon">❌</span>
+          <div class="message-text">
+            <strong>Error en el registro</strong><br>
+            <small>${err.message}</small>
+          </div>
+        </div>
+      `;
+
+      form.appendChild(errorMsg);
+
+      // Scroll to the message
+      setTimeout(() => {
+        errorMsg.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 100);
+
+      // Remove error message after 4 seconds
+      setTimeout(() => {
+        if (errorMsg.parentNode) {
+          errorMsg.remove();
+        }
+      }, 4000);
     }finally{
       submitBtn.disabled = false;
       submitBtn.textContent = "Registrarme";
@@ -123,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const formContainer = document.querySelector('.form-container');
   const loginBtn = document.querySelector('.form-btn span:nth-child(1)');
   const registerBtn = document.querySelector('.form-btn span:nth-child(2)');
+  const regForm = document.getElementById('RegForm');
 
   // Mostrar login por defecto
   formContainer.classList.remove('register-active');
@@ -137,4 +286,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Opcional: listeners para accesibilidad
   loginBtn.addEventListener('click', window.login);
   registerBtn.addEventListener('click', window.register);
+
+  // Initialize form validation
+  if (regForm) {
+    attachValidation(regForm);
+  }
 });
