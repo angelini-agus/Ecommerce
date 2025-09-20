@@ -52,7 +52,8 @@ img {
   height: 18px;
   vertical-align: middle;
 }
-[data-theme="dark"] .btnnav img {
+[data-theme="dark"] .btnnav img,
+[data-theme="dark"] .menu-icon img {
   filter: brightness(0) invert(1);
 }
 [data-theme="dark"] .site-header,
@@ -246,6 +247,7 @@ small {
 /* Testimonial */
 .testimonial {
   padding-top: 80px;
+  min-height: 80vh;
 }
 .testimonial .col-3 {
   text-align: center;
@@ -268,20 +270,6 @@ small {
   font-size: 16px;
 }
 
-/* Brands */
-.brands {
-  margin: 80px auto;
-}
-.col-5 {
-  width: 100px;
-}
-.col-5 img {
-  width: 100%;
-  filter: grayscale(100%);
-}
-.col-5 img:hover {
-  filter: grayscale(0%);
-}
 
 /* Footer */
 .footer {
