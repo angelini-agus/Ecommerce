@@ -17,7 +17,10 @@ if (menuToggleBtn && menuList) {
 // Function to update logo src based on theme
 const updateLogos = (theme) => {
   const logos = document.querySelectorAll('.logo img, .footer-col-2 img');
-  const logoSrc = theme === 'dark' ? 'images/ritmo-sport-claro.png' : 'images/ritmo-sport.png';
+  // Detect if we're in pages folder or root
+  const isInPages = window.location.pathname.includes('/pages/');
+  const pathPrefix = isInPages ? '../' : '';
+  const logoSrc = theme === 'dark' ? `${pathPrefix}images/ritmo-sport-claro.png` : `${pathPrefix}images/ritmo-sport.png`;
   logos.forEach(logo => logo.src = logoSrc);
 };
 
